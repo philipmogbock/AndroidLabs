@@ -3,4 +3,15 @@
     <string name="app_name">Android Labs</string>
     <string name="hello_message">Hola a todos</string>
     <string name="ButtonText">Soy un botón</string>
+    <string name="Button_Text">HAGA CLIC AQUI</string>
+    <string name="checkBox">Mira esto!</string>
+    <string name="hint">Escriba aqui</string>
+    <string name="BigText">Mira mi IGU </string>
+    <string name="toast_message">Aqui hay mas información</string>
+    <string name="switch_on">Interruptor encendido</string>
+    <string name="switch_off">Interruptor apagado</string>
+    <string name="checked">marcada</string>
+    <string name="unchecked">desmarcada</string>
+    <string name="undo">deshacer</string>
+    <string name="switcher">encender/apagar</string>
 </resources>
