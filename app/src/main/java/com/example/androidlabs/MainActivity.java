@@ -1,73 +1,66 @@
 package com.example.androidlabs;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 
 
+
 public class MainActivity extends AppCompatActivity {
+    private EditText enteredEmail;
+    private EditText password;
+    private Button login;
+    public SharedPreferences prefs;
+    public String emailToSave;
+
+//    public String email;
+//    public static final String SHARED_PREFS = "sharedPrefs";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_relative);
+        setContentView(R.layout.activity_main_lab3);
 
-        //messages
-        String toastMessage = MainActivity.this.getResources().getString(R.string.toast_message);
-        String checkedMessage = MainActivity.this.getResources().getString(R.string.checked);
-        String uncheckedMessage = MainActivity.this.getResources().getString(R.string.unchecked);
-        String switchOnMessage = MainActivity.this.getResources().getString(R.string.switch_on);
-        String switchOffMessage = MainActivity.this.getResources().getString(R.string.switch_off);
-        String undo = MainActivity.this.getResources().getString(R.string.undo);
+        enteredEmail = (EditText) findViewById(R.id.email);
+        login = (Button) findViewById(R.id.login);
 
+        //store Shared Preference Object in prefs vble
+        prefs = getSharedPreferences("Email", Context.MODE_PRIVATE);
 
-    //CHECKBOX
-        CheckBox cb= findViewById(R.id.checkBox);
+        //default values if nothing is typed
+        String savedEmail= prefs.getString("email", "");
+        enteredEmail.setText(savedEmail);
 
-//        //using clickListener
-//
-//        cb.setOnClickListener(v ->
-//                Toast.makeText(MainActivity.this, toastMessage, Toast.LENGTH_LONG).show());
+        //onclick for login button
+        login.setOnClickListener(v -> {
+            Intent goToProfile = new Intent(MainActivity.this, ProfileActivity.class);
+            goToProfile.putExtra("email", emailToSave);
+            startActivity(goToProfile);
 
-//        using checkedChangeListener
-        cb.setOnCheckedChangeListener((buttonView, isChecked) ->
-                Toast.makeText(this, toastMessage, Toast.LENGTH_LONG).show());
-
-
-        cb.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if(isChecked) {
-                Snackbar.make(cb,checkedMessage, Snackbar.LENGTH_INDEFINITE)
-                        .setAction(undo, v -> cb.setChecked(false))
-                        .show();
-            }
-            else{
-                Snackbar.make(cb, uncheckedMessage, Snackbar.LENGTH_INDEFINITE)
-                        .setAction(undo, v -> cb.setChecked(true))
-                        .show();
-            }
-        });
-
-
-
-
-        //SWITCH
-        Switch s= findViewById(R.id.switcher);
-        s.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if(isChecked) {
-                Snackbar.make(s,switchOnMessage, Snackbar.LENGTH_INDEFINITE)
-                        .setAction(undo, v -> s.setChecked(false))
-                        .show();
-            }
-            else{
-                Snackbar.make(s, switchOffMessage, Snackbar.LENGTH_INDEFINITE)
-                        .setAction(undo, v -> s.setChecked(true))
-                        .show();
-            }
         });
 
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        SharedPreferences.Editor edit=prefs.edit();
+        emailToSave= enteredEmail.getText().toString();
+        edit.putString("email", emailToSave);
+        edit.commit();
+    }
+
 }

@@ -13,4 +13,15 @@
     <string name="unchecked">This box is now unchecked</string>
     <string name="undo">undo</string>
     <string name="switcher">Switch on/off</string>
+    <string name="msg1">Enter your email address:</string>
+    <string name="hintmsg">Type email here</string>
+    <string name="passmsg">Type your password:</string>
+    <string name="login">Login</string>
+    <string name="profileText">Your Profile</string>
+    <string name="nameText">Your name:</string>
+    <string name="emailText">Your email: </string>
+    <string name="emailPrompt">Enter your email</string>
+    <string name="namePrompt">Enter your name</string>
+    <string name="pictureText">Your picture:</string>
+    <string name="clickMessage">Click the button above to take a picture</string>
 </resources>

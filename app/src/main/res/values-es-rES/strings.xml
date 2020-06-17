@@ -14,4 +14,15 @@
     <string name="unchecked">desmarcada</string>
     <string name="undo">deshacer</string>
     <string name="switcher">encender/apagar</string>
+    <string name="msg1">Enter your email address:</string>
+    <string name="hintmsg">Escriba tu email aqui</string>
+    <string name="passmsg">Escriba tu contraseña:</string>
+    <string name="login">Login</string>
+    <string name="profileText">Tu Perfil</string>
+    <string name="nameText">Tu nombre:</string>
+    <string name="emailText">Tu email: </string>
+    <string name="emailPrompt">Ingresa tu email</string>
+    <string name="namePrompt">Ingresa tu nombre</string>
+    <string name="pictureText">Tu foto:</string>
+    <string name="clickMessage">Haz click en el botón arriba para tomar foto</string>
 </resources>
