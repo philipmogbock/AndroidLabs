@@ -2,19 +2,22 @@ package com.example.androidlabs;
 
 public class Message {
     private String text;
-    private String type;
+    private Boolean isSent;
+    private long databaseId;
 
 
-    public Message (String text, String type){
+    public Message (String text, Boolean isSent, long databaseId){
         this.text = text;
-        this.type = type;
+        this.isSent = isSent;
+        this.databaseId=databaseId;
     }
 
     public String getText(){
         return text;
     }
-    public String getType(){
-        return type;
+    public Boolean getSentStatus(){
+        return isSent;
     }
+    public long getId(){return databaseId;}
 
 }
