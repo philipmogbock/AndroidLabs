@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
@@ -16,6 +17,7 @@ public class ProfileActivity extends AppCompatActivity {
     public static ImageButton mImageButton;
     public static final String ACTIVITY_NAME = "PROFILE_ACTIVITY";
     private EditText emailEditText;
+    private Button chatBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +26,17 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
         mImageButton =findViewById(R.id.imageButton);
         emailEditText=findViewById(R.id.emailValue);
+        chatBtn=findViewById(R.id.chatButton);
+        chatBtn.setOnClickListener(v -> {
+            Intent chatRoom = new Intent(this, ChatRoomActivity.class);
+            startActivity(chatRoom);
+
+        });
+
+
+
+
+
         mImageButton.setOnClickListener(new View.OnClickListener() {
 
             @Override

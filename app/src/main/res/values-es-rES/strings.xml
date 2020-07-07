@@ -25,4 +25,9 @@
     <string name="namePrompt">Ingresa tu nombre</string>
     <string name="pictureText">Tu foto:</string>
     <string name="clickMessage">Haz click en el botón arriba para tomar foto</string>
+    <string name="receiveBtn">Recibir</string>
+    <string name="sendBtn">Enviar</string>
+    <string name="type_here">Type here</string>
+    <string name="receivedMsg">blah</string>
+    <string name="sentMsg">blah</string>
 </resources>

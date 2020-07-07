@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:rowCount="8"
+    android:rowCount="9"
     android:columnCount="1"
     android:orientation="vertical">
 
@@ -63,6 +63,14 @@
         android:text="@string/clickMessage"
         android:layout_columnSpan="1"
         android:textSize="20dp"/>
+
+    <Button
+        android:id="@+id/chatButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Go to chat"
+        android:background="#C8C8C7"
+        />
 
 
 
