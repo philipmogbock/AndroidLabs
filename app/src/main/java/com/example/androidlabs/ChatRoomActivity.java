@@ -40,15 +40,15 @@ public class ChatRoomActivity extends AppCompatActivity {
 
 
         send.setOnClickListener(v -> {
-            message = new Message(textMsg.getText().toString(), "send");
-            elements.add(message.toString());
+            message = new Message(textMsg.getText().toString(), true);
+            elements.add(message.getText());
             myAdapter.notifyDataSetChanged();
 
         });
 
         receive.setOnClickListener(v -> {
-            message = new Message(textMsg.getText().toString(), "receive");
-            elements.add(message.toString());
+            message = new Message(textMsg.getText().toString(), false);
+            elements.add(message.getText());
             myAdapter.notifyDataSetChanged();
         });
 
@@ -110,14 +110,14 @@ public class ChatRoomActivity extends AppCompatActivity {
             LayoutInflater inflater = getLayoutInflater();
 
 
-            if (message.getType().equals("send")) {
+            if (message.getSentStatus()) {
 
                 View newView = inflater.inflate(R.layout.send_layout, parent, false);
 
                 TextView name = newView.findViewById(R.id.textMsgSent);
                 name.setText(getItem(position).toString());
 
-                ImageView profilePic = newView.findViewById(R.id.senderPic);
+                newView.findViewById(R.id.senderPic);
 
                 return newView;
 
@@ -128,7 +128,7 @@ public class ChatRoomActivity extends AppCompatActivity {
                 TextView name = newView.findViewById(R.id.textMsgReceived);
                 name.setText(getItem(position).toString());
 
-                ImageView profilePic = newView.findViewById(R.id.receiverPic);
+                newView.findViewById(R.id.receiverPic);
                 return newView;
             }
         }
