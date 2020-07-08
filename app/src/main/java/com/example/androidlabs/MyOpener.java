@@ -13,7 +13,7 @@ public class MyOpener extends SQLiteOpenHelper {
     protected final static String TABLE_NAME="MESSAGES";
     protected final static String COL_MSG="TEXTMESSAGE";
     protected final static String COL_IS_SENT="SENT";
-    protected final static String COL_id="_id";
+    protected final static String COL_ID="_id";
 
 
 
