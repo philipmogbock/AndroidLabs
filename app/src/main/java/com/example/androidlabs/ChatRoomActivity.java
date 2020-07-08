@@ -121,8 +121,8 @@ public class ChatRoomActivity extends AppCompatActivity {
         @Override
         public long getItemId(int position) {
             //when not using databases you can just return 0
-            return (long) position;
-//            return  getItem(position).getId();
+//            return (long) position;
+            return  getItem(position).getId();
         }
 
         @Override //what widget is at row position (Button, textbox, checkbox etc)
