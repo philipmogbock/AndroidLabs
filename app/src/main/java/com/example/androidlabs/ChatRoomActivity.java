@@ -26,7 +26,8 @@ public class ChatRoomActivity extends AppCompatActivity {
     Button receive;
     EditText textMsg;
     MyListAdapter myAdapter;
-    ArrayList<String> messageList = new ArrayList<>();
+//    ArrayList<String> messageList = new ArrayList<>();
+    ArrayList<Message> messageList = new ArrayList<>();
     Message message;
     ListView myList;
     SQLiteDatabase db;
@@ -45,7 +46,7 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         send.setOnClickListener(v -> {
             message = new Message(textMsg.getText().toString(), true, send.getId());
-            messageList.add(message.getText());
+            messageList.add(message);
 
             //insert data into db
             ContentValues cv= new ContentValues();
@@ -61,7 +62,7 @@ public class ChatRoomActivity extends AppCompatActivity {
             //create message object
             message = new Message(textMsg.getText().toString(), false,receive.getId());
             //add message to array list
-            messageList.add(message.getText());
+            messageList.add(message);
 
             //insert data into db
             ContentValues cv= new ContentValues();
@@ -113,7 +114,7 @@ public class ChatRoomActivity extends AppCompatActivity {
         }
 
         @Override
-        public Object getItem(int position) {
+        public Message getItem(int position) {
             return messageList.get(position);
         }
 
@@ -131,12 +132,12 @@ public class ChatRoomActivity extends AppCompatActivity {
             LayoutInflater inflater = getLayoutInflater();
 
 
-            if (message.getSentStatus()) {
+            if (getItem(position).getSentStatus()) {
 
                 View newView = inflater.inflate(R.layout.send_layout, parent, false);
 
                 TextView name = newView.findViewById(R.id.textMsgSent);
-                name.setText(getItem(position).toString());
+                name.setText(getItem(position).getText());
 
                 newView.findViewById(R.id.senderPic);
 
@@ -147,7 +148,7 @@ public class ChatRoomActivity extends AppCompatActivity {
                 View newView = inflater.inflate(R.layout.receive_layout, parent, false);
 
                 TextView name = newView.findViewById(R.id.textMsgReceived);
-                name.setText(getItem(position).toString());
+                name.setText(getItem(position).getText());
 
                 newView.findViewById(R.id.receiverPic);
                 return newView;
@@ -196,7 +197,7 @@ public class ChatRoomActivity extends AppCompatActivity {
                 }
                 //add the new Message to the array list:
                 Message message=new Message(msg,real_Sent, id);
-                messageList.add(message.toString());
+                messageList.add(message);
 
 
         }
