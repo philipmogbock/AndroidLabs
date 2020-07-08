@@ -33,8 +33,6 @@
 
         />
 
-
-
     <Button
     android:id="@+id/receiveBtn"
     android:layout_width="wrap_content"
@@ -42,10 +40,6 @@
     android:text="@string/receiveBtn"
     android:layout_alignBottom="@id/myList"
     android:layout_alignParentRight="true" />
-
-
-
-
 
 
 </RelativeLayout>

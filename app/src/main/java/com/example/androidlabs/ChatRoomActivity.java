@@ -25,33 +25,31 @@ public class ChatRoomActivity extends AppCompatActivity {
     Button receive;
     EditText textMsg;
     MyListAdapter myAdapter;
-    ArrayList<String> elements = new ArrayList<>();
+//    ArrayList<String> elements = new ArrayList<>();
+    ArrayList<Message> elements = new ArrayList<>();
     Message message;
     ListView myList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_room);
-
         send = findViewById(R.id.sendBtn);
         receive = findViewById(R.id.receiveBtn);
         textMsg = findViewById(R.id.typeHerePrompt);
 
-
-
         send.setOnClickListener(v -> {
             message = new Message(textMsg.getText().toString(), true);
-            elements.add(message.getText());
+//            elements.add(message.getText());
+            elements.add(message);
             myAdapter.notifyDataSetChanged();
-
         });
 
         receive.setOnClickListener(v -> {
             message = new Message(textMsg.getText().toString(), false);
-            elements.add(message.getText());
+//            elements.add(message.getText());
+            elements.add(message);
             myAdapter.notifyDataSetChanged();
         });
-
 
         myList =  findViewById(R.id.myList); //optional cast to (ListView)
         myList.setAdapter(myAdapter = new MyListAdapter());
@@ -75,17 +73,14 @@ public class ChatRoomActivity extends AppCompatActivity {
 
             });
 
-
             alertDialogBuilder.create().show();
             return true;
         });
-
 
     }
 
 
     class MyListAdapter extends BaseAdapter {
-
         @Override
         public int getCount() {
             //don't hardcode the number of elements
@@ -93,7 +88,8 @@ public class ChatRoomActivity extends AppCompatActivity {
         }
 
         @Override
-        public Object getItem(int position) {
+        public Message getItem(int position) {
+
             return elements.get(position);
         }
 
@@ -110,13 +106,13 @@ public class ChatRoomActivity extends AppCompatActivity {
             LayoutInflater inflater = getLayoutInflater();
 
 
-            if (message.getSentStatus()) {
+            if (getItem(position).getSentStatus()) {
 
                 View newView = inflater.inflate(R.layout.send_layout, parent, false);
 
                 TextView name = newView.findViewById(R.id.textMsgSent);
-                name.setText(getItem(position).toString());
-
+//                name.setText(getItem(position).toString());
+                name.setText(getItem(position).getText());
                 newView.findViewById(R.id.senderPic);
 
                 return newView;
@@ -126,15 +122,12 @@ public class ChatRoomActivity extends AppCompatActivity {
                 View newView = inflater.inflate(R.layout.receive_layout, parent, false);
 
                 TextView name = newView.findViewById(R.id.textMsgReceived);
-                name.setText(getItem(position).toString());
+//              name.setText(getItem(position).toString());
+                name.setText(getItem(position).getText());
 
                 newView.findViewById(R.id.receiverPic);
                 return newView;
             }
         }
-
-
-
-
     }
 }
