@@ -73,13 +73,15 @@ public class ChatRoomActivity extends AppCompatActivity {
             myAdapter.notifyDataSetChanged();
         });
 
-
         myList =  findViewById(R.id.myList); //optional cast to (ListView)
         myList.setAdapter(myAdapter = new MyListAdapter());
 
         //On item long click for delete line option
 
         myList.setOnItemLongClickListener((parent, view, position, id) -> {
+            //store selected message
+            Message selectedMessage = messageList.get(position);
+            //build Alert Dialog
             AlertDialog.Builder alertDialogBuilder= new AlertDialog.Builder(this)
                     .setTitle("Do you want to delete this? ")
                     .setMessage("The selected row is : "+ position+
@@ -87,8 +89,11 @@ public class ChatRoomActivity extends AppCompatActivity {
 
             //yes button
             alertDialogBuilder.setPositiveButton("Yes", (click,arg) ->{
+                //remove message from arraylist
                 messageList.remove(position);
                 myAdapter.notifyDataSetChanged();
+                //delete message for database
+                deleteMessage(selectedMessage);
             });
 
             //no button
@@ -96,16 +101,12 @@ public class ChatRoomActivity extends AppCompatActivity {
 
             });
 
-
             alertDialogBuilder.create().show();
-            return true;
-        });
-
-
+            return true; });
     }
 
 
-    class MyListAdapter extends BaseAdapter {
+    protected class MyListAdapter extends BaseAdapter {
 
         @Override
         public int getCount() {
@@ -202,7 +203,15 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         }
 
-        //At this point, the messageList array has loaded every row from the cursor.
     }
+
+    protected void deleteMessage(Message m)
+    {
+        db.delete(MyOpener.TABLE_NAME, MyOpener.COL_ID + "= ?", new String[] {Long.toString(m.getId())});
+    }
+
+
+
+
 
 }
