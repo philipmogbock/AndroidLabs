@@ -40,6 +40,7 @@ public class ChatRoomActivity extends AppCompatActivity {
         send.setOnClickListener(v -> {
             message = new Message(textMsg.getText().toString(), true);
 //            elements.add(message.getText());
+            //
             elements.add(message);
             myAdapter.notifyDataSetChanged();
         });
