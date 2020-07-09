@@ -8,6 +8,7 @@
 
     <ListView
         android:id="@+id/myList"
+        android:layout_above="@id/sendBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -18,28 +19,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/sendBtn"
-        android:layout_alignBottom="@id/myList" />
+        android:layout_alignParentBottom="true" />
 
 
+
+    <Button
+        android:id="@+id/receiveBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/receiveBtn"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true" />
 
     <EditText
         android:id="@+id/typeHerePrompt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="@string/type_here"
-        android:layout_alignBottom="@id/myList"
+        android:layout_alignParentBottom="true"
         android:layout_toRightOf="@id/sendBtn"
         android:layout_toLeftOf="@id/receiveBtn"
 
         />
-
-    <Button
-    android:id="@+id/receiveBtn"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/receiveBtn"
-    android:layout_alignBottom="@id/myList"
-    android:layout_alignParentRight="true" />
 
 
 </RelativeLayout>

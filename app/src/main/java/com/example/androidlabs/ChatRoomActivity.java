@@ -42,6 +42,7 @@ public class ChatRoomActivity extends AppCompatActivity {
 //            elements.add(message.getText());
             //
             elements.add(message);
+            textMsg.setText("");
             myAdapter.notifyDataSetChanged();
         });
 
@@ -49,6 +50,7 @@ public class ChatRoomActivity extends AppCompatActivity {
             message = new Message(textMsg.getText().toString(), false);
 //            elements.add(message.getText());
             elements.add(message);
+            textMsg.setText("");
             myAdapter.notifyDataSetChanged();
         });
 
