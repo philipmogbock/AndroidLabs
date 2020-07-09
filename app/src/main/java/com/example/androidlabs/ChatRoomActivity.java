@@ -7,6 +7,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +19,7 @@ import android.widget.TextView;
 
 
 import java.util.ArrayList;
-
+import java.util.Arrays;
 
 
 public class ChatRoomActivity extends AppCompatActivity {
@@ -53,7 +54,7 @@ public class ChatRoomActivity extends AppCompatActivity {
             cv.put(MyOpener.COL_MSG, textMsg.getText().toString() );
             cv.put(MyOpener.COL_IS_SENT, 1);
             long id= db.insert(MyOpener.TABLE_NAME, null, cv);
-
+            textMsg.setText("");
             myAdapter.notifyDataSetChanged();
 
         });
@@ -69,7 +70,7 @@ public class ChatRoomActivity extends AppCompatActivity {
             cv.put(MyOpener.COL_MSG, textMsg.getText().toString() );
             cv.put(MyOpener.COL_IS_SENT, 0);
             long id= db.insert(MyOpener.TABLE_NAME, null, cv);
-
+            textMsg.setText("");
             myAdapter.notifyDataSetChanged();
         });
 
@@ -196,13 +197,10 @@ public class ChatRoomActivity extends AppCompatActivity {
                 else{
                     real_Sent= true;
                 }
-                //add the new Message to the array list:
-                Message message=new Message(msg,real_Sent, id);
-                messageList.add(message);
-
-
+                //add the new Message to the array list
+                messageList.add(new Message(msg,real_Sent, id));
         }
-
+        printCursor(results, db.getVersion());
     }
 
     protected void deleteMessage(Message m)
@@ -211,7 +209,52 @@ public class ChatRoomActivity extends AppCompatActivity {
     }
 
 
+    private void printCursor(Cursor c, int version) {
 
+//        Log.i("Database details","Database Version Number: "+ c.getString(version)+
+//                "\nNumber of Columns in cursor: "+c.getString(c.getColumnCount())+
+//                "\nName of Columns in cursor: "+Arrays.toString(c.getColumnNames())+
+//                "\nNumber of Rows in cursor: " + c.getString(c.getCount())
+//        );
+
+        Log.i("Database details", "Database Version Number: " + version +
+                "\nNumber of Columns in cursor: " + c.getColumnCount() +
+                "\nName of Columns in cursor: " + Arrays.toString(c.getColumnNames()) +
+                "\nNumber of Rows in cursor: " + c.getCount()
+        );
+
+//        print out each row of results
+
+        //get the index of each column
+        int idColIndex = (c.getColumnIndex(MyOpener.COL_ID));
+        int msgColIndex = (c.getColumnIndex(MyOpener.COL_MSG));
+        int isSentColIndex = (c.getColumnIndex(MyOpener.COL_IS_SENT));
+        StringBuilder resultSB = new StringBuilder("Results of each row in Cursor");
+
+        //loop through
+        if (c.moveToNext()) {
+            do {
+//        while (c.moveToNext()){
+                //get the values at those indexes
+                int isSent = c.getInt(isSentColIndex);
+                String msg = c.getString(msgColIndex);
+                long id = c.getLong(idColIndex);
+
+                //append data to the string builder object
+                resultSB.append("\nRow : ").append(c.getPosition())
+                        .append("\nID: ").append(id)
+                        .append("\nMessage: ").append(msg)
+                        .append("\nIs Sent Status (0= received, 1=sent): ").append(isSent)
+                        .append("");
+
+
+            } while (c.moveToNext());
+            }
+
+//       print info to the log screen
+        Log.i("Results of each row", resultSB.toString());
+
+    }
 
 
 }
