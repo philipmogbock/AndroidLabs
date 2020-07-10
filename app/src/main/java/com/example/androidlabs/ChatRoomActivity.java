@@ -229,10 +229,10 @@ public class ChatRoomActivity extends AppCompatActivity {
         int idColIndex = (c.getColumnIndex(MyOpener.COL_ID));
         int msgColIndex = (c.getColumnIndex(MyOpener.COL_MSG));
         int isSentColIndex = (c.getColumnIndex(MyOpener.COL_IS_SENT));
-        StringBuilder resultSB = new StringBuilder("Results of each row in Cursor");
+        StringBuilder resultSB = new StringBuilder("\nResults of each row in Cursor\n");
 
         //loop through
-        if (c.moveToNext()) {
+        if (c.moveToFirst()) {
             do {
 //        while (c.moveToNext()){
                 //get the values at those indexes
@@ -245,7 +245,7 @@ public class ChatRoomActivity extends AppCompatActivity {
                         .append("\nID: ").append(id)
                         .append("\nMessage: ").append(msg)
                         .append("\nIs Sent Status (0= received, 1=sent): ").append(isSent)
-                        .append("");
+                        .append("\n");
 
 
             } while (c.moveToNext());
