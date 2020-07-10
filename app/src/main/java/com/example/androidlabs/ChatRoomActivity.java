@@ -90,11 +90,15 @@ public class ChatRoomActivity extends AppCompatActivity {
 
             //yes button
             alertDialogBuilder.setPositiveButton("Yes", (click,arg) ->{
-                //remove message from arraylist
-                messageList.remove(position);
-                myAdapter.notifyDataSetChanged();
+
+
                 //delete message for database
                 deleteMessage(selectedMessage);
+
+                //remove message from arraylist
+                messageList.remove(position);
+
+                myAdapter.notifyDataSetChanged();
             });
 
             //no button
