@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:rowCount="1"
-    android:columnCount="2"
     android:orientation="vertical">
 
 
@@ -13,9 +11,8 @@
         android:id="@+id/textMsgReceived"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_column="1"
-        android:layout_columnSpan="1"
-        android:layout_gravity=""
+        android:layout_toLeftOf="@id/receiverPic"
+        android:gravity="fill"
         android:text="@string/receivedMsg"
         android:textSize="20sp" />
 
@@ -24,11 +21,8 @@
         android:id="@+id/receiverPic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_columnSpan="1"
+        android:layout_alignParentRight="true"
         android:gravity="fill"
         android:src="@drawable/row_recieve" />
 
-
-
-
-</GridLayout>
+</RelativeLayout>
